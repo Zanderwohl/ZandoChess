@@ -45,7 +45,7 @@ public class Piece {
 	 * Simple constructor for pieces.
 	 * @param symbol The single-character symbol for this piece.
 	 * @param name The unique name of this piece.
-	 * @param color The team color of this piece.
+	 * @param team The team this piece is a member of.
 	 */
 	public Piece(String symbol, String name, Team team) {
 		this.symbol = symbol;
