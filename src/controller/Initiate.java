@@ -31,7 +31,4 @@ public class Initiate {
 		c.hardcodedStart("standard");
 	}
 	
-	//Adding a comment here to make a change.
-	
-	
 }
