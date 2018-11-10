@@ -21,8 +21,8 @@ public class Initiate {
 	 * @param args No args input.
 	 */
 	public static void main(String[] args) {
-		//currentLocale = new Locale("en", "US");
-		currentLocale = new Locale("en","SF");
+		currentLocale = new Locale("en", "US");
+		//currentLocale = new Locale("en","SF");
 		
 		UserView v = new UserView(currentLocale);
 		Model m = new Model();
