@@ -1,0 +1,2 @@
+94 Lightness white
+30 Lightness gray
