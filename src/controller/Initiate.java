@@ -8,6 +8,7 @@ import view.UserView;
 /**
  * Entry point for the program. Creates a model, view, and controller, finally linking them to each other.
  * @author Alexander
+ * 
  *
  */
 public class Initiate {
@@ -29,6 +30,8 @@ public class Initiate {
 		c = new Controller(v,m);
 		c.hardcodedStart("standard");
 	}
+	
+	//Adding a comment here to make a change.
 	
 	
 }
