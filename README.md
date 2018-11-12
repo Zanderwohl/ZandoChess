@@ -12,3 +12,7 @@ Post 4: Let the program allow users to edit games within a GUI and save them, so
 Post 5: Add graphical packs, and possibly another GUI besides the current 2D board.
 
 Post 6: Add very unusual things like multiple boards that connect in different ways, multidimensionality, and possibly even non square spaces. Perhaps the board with not be a 2D array but rather a directed graph.
+
+
+
+To run this program, compile the source files, making Initiate.java the entry point of the program. Currently, the project is set up in Eclipse Photon, so opening the project folder in Eclipse should allow easily compilation.
