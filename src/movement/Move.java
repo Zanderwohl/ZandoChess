@@ -146,4 +146,12 @@ public class Move extends Touple {
 	public MoveHistory getEffect() {
 		return effect;
 	}
+	
+	/**
+	 * Set the effect of this particular move.
+	 * @param m The secondary effect to be added.
+	 */
+	public void setEffect(MoveHistory m) {
+		effect = m;
+	}
 }

@@ -3,6 +3,7 @@ package piece;
 import movement.Castle;
 import movement.MoveClass;
 import movement.MoveSet;
+import movement.enPassant;
 import team.Team;
 
 /**
@@ -72,7 +73,7 @@ public class PieceFactory {
 	 */
 	public void setImage(String set, String color, String piece	) {
 		String URL = "/" + set + "/" + color + "/" + piece + ".png";
-		System.out.println(URL + "\n");
+		//System.out.println(URL + "\n");
 		try {
 			p.setImage(URL);
 		} catch (IllegalArgumentException e) {
@@ -163,16 +164,22 @@ public class PieceFactory {
 			case "pawn":
 				//TODO: add en passant capture
 				//TODO: add ability to promote
+				//Move enPassantLeft = new Move(-1,0, BLOCKABLE, NO_MOVE, CAPTURE);
+				//Move enPassantRight = new Move(1,0, BLOCKABLE, NO_MOVE, CAPTURE);
 				if(p.getColor().equals("white")){
 					addMoveClass("forward-one", 1, 0, 1, BLOCKABLE, MOVE, NO_CAPTURE);
 					addMoveClass("forward", 2, 0, 1, BLOCKABLE, MOVE, NO_CAPTURE, 0, 0);
 					addMoveClass("cap1", 1, 1, 1, BLOCKABLE, NO_MOVE, CAPTURE);
 					addMoveClass("cap2", 1, -1, 1, BLOCKABLE, NO_MOVE, CAPTURE);
+					addMoveClass(new enPassant("leftEnPassant", -1, 1, -1, 0, 0, 4));
+					addMoveClass(new enPassant("leftEnPassant", 1, 1, 1, 0, 0, 4));
 				} else {
 					addMoveClass("forward-one", 1, 0, -1, BLOCKABLE, MOVE, NO_CAPTURE);
 					addMoveClass("forward", 2, 0, -1, BLOCKABLE, MOVE, NO_CAPTURE, 0, 0);
 					addMoveClass("cap1", 1, 1, -1, BLOCKABLE, NO_MOVE, CAPTURE);
 					addMoveClass("cap2", 1, -1, -1, BLOCKABLE, NO_MOVE, CAPTURE);
+					//p.addMove(enPassantLeft);
+					//p.addMove(enPassantRight);
 				}
 				break;
 			case "rook":
