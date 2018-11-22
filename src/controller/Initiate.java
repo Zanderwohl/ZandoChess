@@ -28,7 +28,8 @@ public class Initiate {
 		UserView v = new UserView(currentLocale);
 		Model m = new Model();
 		c = new Controller(v,m);
-		c.hardcodedStart("standard");
+		//c.hardcodedStart("standard");
+		c.hardcodedStart("castle");
 	}
 	
 }
