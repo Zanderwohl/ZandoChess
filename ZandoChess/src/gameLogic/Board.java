@@ -51,6 +51,16 @@ public class Board {
 	}
 	
 	/**
+	 * Says if the piece color at Touple t is the color specified.
+	 * @param t The location to be checked.
+	 * @param teamName The name of the team to be compared to.
+	 * @return True if the team name of that piece is as specified.
+	 */
+	public boolean pieceColorIs(Touple t, String teamName) {
+		return getPiece(t).getColor().equals(teamName);
+	}
+	
+	/**
 	 * Sets a piece on the board at that location.
 	 * @param p The piece to be set.
 	 * @param t The location it is to be set.

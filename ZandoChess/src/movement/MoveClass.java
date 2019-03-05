@@ -140,60 +140,35 @@ public class MoveClass extends MoveSet{
 	 * @return The list of all possible moves on this board from this MoveClass.
 	 */
 	public ArrayList<Move> generateMoves(Board board, Piece piece, boolean getMoves, boolean getCaptures){
-		/*System.out.print("Getting ");
-		if(getMoves) {
-			System.out.print("moves ");
-		}
-		if(getCaptures) {
-			System.out.print("captures");
-		}
-		System.out.println(" of " + name);*/
+
 		ArrayList<Move> list = new ArrayList<Move>();
 		int moveNumber = piece.getMoveNumber();
-		if(moveNumber >= minMove && moveNumber <= maxMove) {
-			int i = 0;
-			int x = piece.getPosition().getXNumeral();
-			int y = piece.getPosition().getYNumeral();
-			//Touple current = new Touple(x,y);
-			//System.out.println("Checking " + current.getX() + current.getY());
-			while(x + dx >= 0 && y + dy >= 0 && x + dx < board.getWidth() && y + dy < board.getHeight() && i < limit) {
-				x += dx;
-				y += dy;
-				i++;
-				//current = new Touple(x,y);
-				//System.out.println("\tDirect check on " + current.getX() + current.getY() + " dx: " + dx + " dy: " + dy);
-				
-				if(board.spaceEmpty(new Touple(x,y))) {
-					//System.out.println("\t\tSpace " + current.getX() + current.getY() + " empty! ");
-					if(move) {
-						if(getMoves) {
-							list.add(new Move(x-piece.getPosition().getXNumeral(),y-piece.getPosition().getYNumeral()));
-							//System.out.println("\t\tmove added " + (x + piece.getPosition().getXNumeral()) + (y-piece.getPosition().getXNumeral()));
-							//add a move
-						}
-					}
-				} else {
-					if(capture) {
-						Touple proposedCapture = new Touple(x,y);
-						if(getMoves && !board.getPiece(proposedCapture).getColor().equals(piece.getColor())) {
-							list.add(new Move(x-piece.getPosition().getXNumeral(),y-piece.getPosition().getYNumeral()));
-							//System.out.println("\t\tmove added " + (x + piece.getPosition().getXNumeral()) + (y-piece.getPosition().getXNumeral()));
-							//add a move
-						}
-					}
-					if(blockable) {	//if this move class is blockable
-						//System.out.println("\t\tBlocked!");
-						i = limit;  //allow no futher moves.
-					}
+		if(!(moveNumber >= minMove && moveNumber <= maxMove)) {
+			return list;
+		}
+		int i = 0;
+		int x = piece.getPosition().getXNumeral();
+		int y = piece.getPosition().getYNumeral();
+		while(board.isValidSquare(new Touple(x + dx, y + dy)) && i < limit) {
+			x += dx;
+			y += dy;
+			i++;
+			
+			if(board.spaceEmpty(new Touple(x,y))) {
+				if(move && getMoves) {
+					list.add(new Move(x-piece.getPosition().getXNumeral(),y-piece.getPosition().getYNumeral()));
+				}
+			} else {
+				Touple proposedCapture = new Touple(x,y);
+				//if(capture && getMoves && !board.getPiece(proposedCapture).getColor().equals(piece.getColor())) {
+				if(capture && getMoves && !board.pieceColorIs(proposedCapture, piece.getColor())) {
+					list.add(new Move(x-piece.getPosition().getXNumeral(),y-piece.getPosition().getYNumeral()));
+				}
+				if(blockable) {	//if this move class is blockable
+					i = limit;  //allow no futher moves.
 				}
 			}
 		}
-		/*
-		System.out.println("\tReturning list of length " + list.size() + ":");
-		for(Move m: list) {
-			System.out.println("\t\t" + m.getX() + m.getY());
-		}
-		System.out.println("\t---END OF LIST---\n");*/
 		return list;
 	}
 }
